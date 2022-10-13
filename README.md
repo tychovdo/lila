@@ -6,8 +6,20 @@ A convenient gradient-based method for selecting the data augmentation without v
 
 ## Paper
 
-Code for "[Invariance Learning in Deep Neural Networks with Differentiable Laplace Approximations](https://arxiv.org/abs/2202.10638)" paper by Alexander Immer*, Tycho F.A. van der Ouderaa*, Vincent Fortuin, Gunnar Rätsch, Mark van der Wilk. In NeurIPS 2022.
+Code accompanying the paper:<br>
+<br>
+"[Invariance Learning in Deep Neural Networks with Differentiable Laplace Approximations](https://arxiv.org/abs/2202.10638)"<br>
+Alexander Immer*, Tycho F.A. van der Ouderaa*, Vincent Fortuin, Gunnar Rätsch, Mark van der Wilk.<br>
+In NeurIPS 2022.<br>
 
+<table>
+  <tr>
+    <td><img src="https://github.com/tychovdo/lila/blob/main/figs/paper_figure1.png" ></td>
+    <td><img src="https://github.com/tychovdo/lila/blob/main/figs/kfac_figure.png" ></td>
+  </tr>
+ </table>
+
+*: equal contribution
 
 ## Setup
 Python 3.8 is required.
@@ -18,6 +30,7 @@ pip install -r requirements.txt
 Create directory for results: `mkdir results` in the root of the project.
 
 ### Install custom Laplace and ASDL
+
 ```bash
 pip install git+https://github.com/kazukiosawa/asdfghjkl.git@dev-alex
 pip install git+https://github.com/AlexImmer/Laplace.git@lila
