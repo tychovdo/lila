@@ -2,6 +2,8 @@
 
 A convenient gradient-based method for selecting the data augmentation without validation data and during training of a deep neural network. 
 
+![](https://github.com/tychovdo/lila/blob/main/figs/gif_demo_bar.gif)
+
 ## Paper
 
 Code for "[Invariance Learning in Deep Neural Networks with Differentiable Laplace Approximations](https://arxiv.org/abs/2202.10638)" paper by Alexander Immer*, Tycho F.A. van der Ouderaa*, Vincent Fortuin, Gunnar Rätsch, Mark van der Wilk. In NeurIPS 2022.
