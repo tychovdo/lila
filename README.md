@@ -1,25 +1,20 @@
 # Learning Invariances with Laplace Approximations (LILA)
 
 A convenient gradient-based method for selecting the data augmentation without validation data and during training of a deep neural network. 
-
-![](https://github.com/tychovdo/lila/blob/main/figs/gif_demo_bar.gif)
-
-## Paper
-
 Code accompanying the paper:<br>
 <br>
 "[Invariance Learning in Deep Neural Networks with Differentiable Laplace Approximations](https://arxiv.org/abs/2202.10638)"<br>
 Alexander Immer*, Tycho F.A. van der Ouderaa*, Vincent Fortuin, Gunnar Rätsch, Mark van der Wilk.<br>
 In NeurIPS 2022.<br>
 
-<table>
-  <tr>
-    <td><img src="https://github.com/tychovdo/lila/blob/main/figs/paper_figure1.png" ></td>
-    <td><img src="https://github.com/tychovdo/lila/blob/main/figs/kfac_figure.png" ></td>
-  </tr>
- </table>
-
 *: equal contribution
+
+## LILA on Transformed MNIST Datasets
+
+![](https://github.com/tychovdo/lila/blob/main/figs/gif_demo_bar.gif)
+
+## LILA Illustration
+<img src="https://github.com/tychovdo/lila/blob/main/figs/paper_figure1.png" width="75%">
 
 ## Setup
 Python 3.8 is required.
