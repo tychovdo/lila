@@ -14,7 +14,7 @@ In NeurIPS 2022.<br>
 ![](https://github.com/tychovdo/lila/blob/main/figs/gif_demo_bar.gif)
 
 ## LILA Illustration
-<img src="https://github.com/tychovdo/lila/blob/main/figs/paper_figure1.png" width="75%">
+<center><img src="https://github.com/tychovdo/lila/blob/main/figs/paper_figure1.png" width="75%"></center>
 
 ## Setup
 Python 3.8 is required.
