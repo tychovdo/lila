@@ -10,7 +10,7 @@ from torch.nn.utils.convert_parameters import parameters_to_vector
 from laplace.curvature.augmented_asdl import AugAsdlGGN, AugAsdlEF
 
 from lila.marglik import marglik_opt_jvecprod, marglik_optimization
-from lila.datasets import RotatedMNIST, TranslatedMNIST, ScaledMNIST, ScaledMNIST2
+from lila.datasets import RotatedMNIST, TranslatedMNIST, ScaledMNIST 
 from lila.datasets import RotatedFashionMNIST, TranslatedFashionMNIST, ScaledFashionMNIST
 from lila.datasets import RotatedCIFAR10, TranslatedCIFAR10, ScaledCIFAR10
 from lila.utils import TensorDataLoader, dataset_to_tensors, get_laplace_approximation, set_seed
