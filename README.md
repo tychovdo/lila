@@ -54,3 +54,15 @@ To run non-invariant baseline:
 ```
 python classification_image.py --method avgfunc --dataset translated_mnist --n_epochs 1000 --device cuda --n_samples_aug 1 --save --approx ggn_kron --batch_size 1000 --seed 1
 ```
+
+
+
+## Reproducibility
+
+All experiments in the paper can be replicated using runscripts in
+
+```bash
+experimentscripts/
+```
+
+If you do run into issues, please get in touch so we can provide support.
