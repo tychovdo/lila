@@ -1,0 +1,6 @@
+matplotlib
+numpy
+absl-py
+torch
+torchvision
+pathlib
