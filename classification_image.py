@@ -29,8 +29,8 @@ flags.DEFINE_enum(
 flags.DEFINE_float('augerino_reg', 1e-2, 'Augerino regularization strength (default from paper).')
 flags.DEFINE_enum(
     'dataset', 'mnist',
-    ['mnist', 'mnist_r90', 'mnist_r180', 'translated_mnist', 'scaled_mnist', 'scaled_mnist2',
-     'fmnist', 'fmnist_r90', 'fmnist_r180', 'translated_fmnist', 'scaled_fmnist', 'scaled_fmnist2',
+    ['mnist', 'mnist_r90', 'mnist_r180', 'translated_mnist', 'scaled_mnist', 
+     'fmnist', 'fmnist_r90', 'fmnist_r180', 'translated_fmnist', 'scaled_fmnist', 
      'cifar10', 'cifar10_r90', 'cifar10_r180', 'translated_cifar10', 'scaled_cifar10'],
     'Available methods: `mnist` is plain MNIST data, `mnist_r90` is partially-rotated ±90° MNIST, `mnist_r180` is fully-rotated ±180° MNIST')
 flags.DEFINE_enum('model', 'mlp', ['mlp', 'cnn', 'resnet_8_16', 'resnet_8_8', 'wrn'], help='model architecture')
@@ -97,9 +97,6 @@ def main(argv):
     elif FLAGS.dataset == 'scaled_mnist':
         train_dataset = ScaledMNIST(FLAGS.data_root, np.log(2), train=True, download=FLAGS.download, transform=transform)
         test_dataset = ScaledMNIST(FLAGS.data_root, np.log(2), train=False, download=FLAGS.download, transform=transform)
-    elif FLAGS.dataset == 'scaled_mnist2': # independently scales x- and y-axis
-        train_dataset = ScaledMNIST2(FLAGS.data_root, np.log(2), train=True, download=FLAGS.download, transform=transform)
-        test_dataset = ScaledMNIST2(FLAGS.data_root, np.log(2), train=False, download=FLAGS.download, transform=transform)
     elif FLAGS.dataset == 'fmnist':
         train_dataset = RotatedFashionMNIST(FLAGS.data_root, 0, train=True, download=FLAGS.download, transform=transform)
         test_dataset = RotatedFashionMNIST(FLAGS.data_root, 0, train=False, download=FLAGS.download, transform=transform)

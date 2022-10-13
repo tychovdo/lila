@@ -274,53 +274,6 @@ class ScaledMNIST(datasets.MNIST):
         self.data = self.data[:, 0].type(data_dtype).clamp(xmin, xmax)
 
 
-class ScaledMNIST2(datasets.MNIST):
-    """ MNIST scaled by fixed amount using random seed """
-
-    def __init__(self, root: str, amount: float, mode: str = 'bilinear',
-                 train: bool = True, transform: Union[Callable, type(None)] = None,
-                 target_transform: Union[Callable, type(None)] = None, download: bool = False):
-        super().__init__(root, train, transform, target_transform, download)
-        """
-        Args:
-            root (string): Root directory of dataset where ``MNIST/processed/training.pt``
-                and  ``MNIST/processed/test.pt`` exist.
-            amount (float): Amount of translation in pixels
-            mode (float): Mode used for interpolation (nearest|bilinear|bicubic)
-            train (bool, optional): If True, creates dataset from ``training.pt``,
-                otherwise from ``test.pt``.
-            download (bool, optional): If true, downloads the dataset from the internet and
-                puts it in root directory. If dataset is already downloaded, it is not
-                downloaded again.
-            transform (callable, optional): A function/transform that  takes in an PIL image
-                and returns a transformed version. E.g, ``transforms.RandomCrop``
-            target_transform (callable, optional): A function/transform that takes in the
-                target and transforms it.
-                same arguments as torchvision.see arguments of torchvision.dataset.MNIST)
-        """
-
-        torch.manual_seed(int(train))
-
-        rad = np.radians(amount)
-
-        s1 = (torch.rand(len(self.data)) * 2 - 1) * amount
-        s2 = (torch.rand(len(self.data)) * 2 - 1) * amount
-
-        zero = s1 * 0.0
-        one = zero + 1.0
-
-        matrices = torch.stack((torch.stack((torch.exp(s1), zero, zero), 0),
-                                torch.stack((zero, torch.exp(s2), zero), 0)), 0).permute(2, 0, 1)
-
-        grids = F.affine_grid(matrices, self.data.unsqueeze(1).shape, align_corners=True)
-
-        xmin, xmax = self.data.min(), self.data.max()
-        data_dtype = self.data.dtype
-
-        self.data = F.grid_sample(self.data.unsqueeze(1).float(), grids, align_corners=True, mode=mode)
-        self.data = self.data[:, 0].type(data_dtype).clamp(xmin, xmax)
-
-
 class RotatedFashionMNIST(datasets.FashionMNIST):
     """ Rotated FashionMNIST class.
         Wraps regular pytorch FashionMNIST and rotates each image randomly between given angle using fixed seed. """
