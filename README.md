@@ -1,6 +1,6 @@
 # Learning Invariances with Laplace Approximations (LILA)
 
-A convenient gradient-based method for selecting the data augmentation without validation data and during training of a deep neural network. 
+A convenient gradient-based method for selecting the data augmentation without validation data and during training of a deep neural network.
 Code accompanying the paper:<br>
 <br>
 "[Invariance Learning in Deep Neural Networks with Differentiable Laplace Approximations](https://arxiv.org/abs/2202.10638)"<br>
@@ -52,7 +52,7 @@ python classification_image.py --dataset cifar10 --model resnet_8_8 --approx ggn
 To run LILA:
 
 ```bash
-python classification_image.py --method avgfunc --dataset translated_mnist --n_epochs 1000 --device cuda --n_samples_aug 31 --save --optimize_aug --approx ggn_kron --batch_size 1000 --download
+python classification_image.py --method avgfunc --dataset translated_mnist --n_epochs 1000 --device cuda --n_samples_aug 31 --save --optimize_aug --approx ggn_kron --use_jvp --batch_size 1000 --download
 ```
 
 To run Augerino:

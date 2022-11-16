@@ -10,7 +10,7 @@ from torch.nn.utils.convert_parameters import parameters_to_vector
 from laplace.curvature.augmented_asdl import AugAsdlGGN, AugAsdlEF
 
 from lila.marglik import marglik_opt_jvecprod, marglik_optimization
-from lila.datasets import RotatedMNIST, TranslatedMNIST, ScaledMNIST 
+from lila.datasets import RotatedMNIST, TranslatedMNIST, ScaledMNIST
 from lila.datasets import RotatedFashionMNIST, TranslatedFashionMNIST, ScaledFashionMNIST
 from lila.datasets import RotatedCIFAR10, TranslatedCIFAR10, ScaledCIFAR10
 from lila.utils import TensorDataLoader, dataset_to_tensors, get_laplace_approximation, set_seed
@@ -29,8 +29,8 @@ flags.DEFINE_enum(
 flags.DEFINE_float('augerino_reg', 1e-2, 'Augerino regularization strength (default from paper).')
 flags.DEFINE_enum(
     'dataset', 'mnist',
-    ['mnist', 'mnist_r90', 'mnist_r180', 'translated_mnist', 'scaled_mnist', 
-     'fmnist', 'fmnist_r90', 'fmnist_r180', 'translated_fmnist', 'scaled_fmnist', 
+    ['mnist', 'mnist_r90', 'mnist_r180', 'translated_mnist', 'scaled_mnist',
+     'fmnist', 'fmnist_r90', 'fmnist_r180', 'translated_fmnist', 'scaled_fmnist',
      'cifar10', 'cifar10_r90', 'cifar10_r180', 'translated_cifar10', 'scaled_cifar10'],
     'Available methods: `mnist` is plain MNIST data, `mnist_r90` is partially-rotated ±90° MNIST, `mnist_r180` is fully-rotated ±180° MNIST')
 flags.DEFINE_enum('model', 'mlp', ['mlp', 'cnn', 'resnet_8_16', 'resnet_8_8', 'wrn'], help='model architecture')
@@ -149,15 +149,15 @@ def main(argv):
         batch_size = subset_size
     else:
         batch_size = min(FLAGS.batch_size, subset_size)
-
     train_loader = TensorDataLoader(X_train, y_train, transform=augmenter, batch_size=batch_size, shuffle=True, detach=True)
     valid_loader = TensorDataLoader(X_test, y_test, transform=augmenter, batch_size=batch_size, detach=True)
-    if FLAGS.marglik_batch_size == batch_size or FLAGS.marglik_batch_size <= 0:
-        marglik_loader = deepcopy(train_loader).attach()
+
+    if FLAGS.marglik_batch_size <= 0:  # full batch
+        ml_batch_size = batch_size
     else:
         ml_batch_size = min(FLAGS.marglik_batch_size, subset_size)
-        marglik_loader = TensorDataLoader(X_train, y_train, transform=augmenter, batch_size=ml_batch_size,
-                                          shuffle=True, detach=False)
+    marglik_loader = TensorDataLoader(X_train, y_train, transform=augmenter, batch_size=ml_batch_size,
+                                      shuffle=True, detach=False)
 
     if FLAGS.partial_batch_size == FLAGS.marglik_batch_size or FLAGS.partial_batch_size <= 0:
         # use marglik loader
@@ -218,7 +218,7 @@ def main(argv):
                 n_hypersteps=FLAGS.n_hypersteps, marglik_frequency=FLAGS.marglik_frequency, laplace=laplace,
                 prior_structure=prior_structure, backend=backend, n_epochs_burnin=FLAGS.n_epochs_burnin,
                 method=FLAGS.method, augmenter=augmenter, lr_min=FLAGS.lr_min, scheduler='cos',
-                n_hypersteps_prior=FLAGS.n_hypersteps_prior, lr_aug_min=FLAGS.lr_aug_min, 
+                n_hypersteps_prior=FLAGS.n_hypersteps_prior, lr_aug_min=FLAGS.lr_aug_min,
                 prior_prec_init=FLAGS.prior_prec_init, optimizer=optimizer
             )
 
